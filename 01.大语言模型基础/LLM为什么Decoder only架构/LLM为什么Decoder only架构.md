@@ -13,8 +13,6 @@ Transformer 模型一开始是用来做 seq2seq 任务的，所以它包含 Enco
 - 以GPT为代表的**decoder-only**，
 - 以UNILM9为代表的PrefixLM(相比于GPT只改了attention mask，前缀部分是双向，后面要生成的部分是单向的causal mask%)&#x20;
 
-![](image/image_FTjn7ZU5Xf.png)
-
 然后说明要比较的对象: 首先**淘汰掉BERT这种encoder-only，因为它用masked language modeling预训练，不擅长做生成任务**，做NLUQ一般也需要有监督的下游数据微调: 相比之下decoder-only的模型用next token prediction%预训练，兼顾理解和生成，在各种下游任务上的zero-shot和few-shot泛化性能·都很好。我们需要讨论的是，为啥引入了一部分双向attention的encoder-decoder和Prefix-LM没有被大部分大模型工作采用? (它们也能兼顾理解和生成，泛化性能也不错)
 
 ### 1.Encoder的低秩问题

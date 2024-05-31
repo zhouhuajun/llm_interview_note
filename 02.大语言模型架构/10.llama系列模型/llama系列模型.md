@@ -25,7 +25,7 @@ $$
 $$
 
 此外，RMSNorm 还可以引入可学习的缩放因子 $g_
-i $和偏移参数 $b_i$，从而得到 $\bar{a}_{i}=\frac{a_{i}}{\operatorname{RMS}(\boldsymbol{a})} g_{i}+b_{i}$。 RMSNorm 在 HuggingFace Transformer 库中代码实现如下所示：
+i $和偏移参数 $b_i$，从而得到 \bar{a}_{i}=\frac{a_{i}}{\operatorname{RMS}(\boldsymbol{a})} g_{i}+b_{i}$。 RMSNorm 在 HuggingFace Transformer 库中代码实现如下所示：
 
 ```python
 class LlamaRMSNorm(nn.Module):
@@ -41,7 +41,7 @@ class LlamaRMSNorm(nn.Module):
     input_dtype = hidden_states.dtype 
     variance = hidden_states.to(torch.float32).pow(2).mean(-1, keepdim=True) 
     hidden_states = hidden_states * torch.rsqrt(variance + self.variance_epsilon) # weight 是末尾乘的可训练参数, 即 g_i 
-    
+  
     return (self.weight * hidden_states).to(input_dtype)
 ```
 
